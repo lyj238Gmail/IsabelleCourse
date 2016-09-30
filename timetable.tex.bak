@@ -1,0 +1,30 @@
+
+
+\documentclass{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{latexsym}
+\usepackage{url}
+\usepackage{color}
+\usepackage{ctex}
+
+\vspace{-5pt}
+\begin{table}[!t]
+\centering
+\caption{\label{Summarization of experiment results}Verification results on benchmarks.}
+\vspace{-8pt}
+\begin{tabular}{|c|r|}
+\hline
+8:00-8:45 &  reading bible \\
+\hline\hline
+8:45-9:00 & taking a rest  \\
+\hline
+9:00-10:00 & doing research \\
+\hline
+\end{tabular}
+\vspace{-5mm}
+\vspace{-5pt}\end{table}

@@ -1,0 +1,312 @@
+\documentclass{beamer}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+\usepackage{isabelle}
+\usepackage{isabellesym}
+
+\usepackage{ctex}
+
+%%%%%%%%%%%% For Isabelle code
+\newlength{\fminilength}
+\newsavebox{\fminibox}
+\newenvironment{fmini}[1][\linewidth]
+  {\setlength{\fminilength}{#1\fboxsep-2\fboxrule}%
+   \vspace{2ex}\noindent\begin{lrbox}{\fminibox}\begin{minipage}{\fminilength}%
+   \mbox{ }\hfill\vspace{-2.5ex}}%
+  {\end{minipage}\end{lrbox}\vspace{1ex}\hspace{0ex}%
+   \framebox{\usebox{\fminibox}}}
+
+\newenvironment{specification}
+{\noindent\scriptsize
+\tt\begin{fmini}\begin{tabbing}X\=X12345\=XXXX\=XXXX\=XXXX\=XXXX\=XXXX
+\=\+\kill} {\end{tabbing}\normalfont\end{fmini}}
+
+\usetheme{Warsaw}
+
+\begin{document}
+
+%%-------------------------------------------------
+
+
+%\title{ {\sf paraVerifier}: An Automatic Framework for Proving Parameterized Cache Coherence Protocols}
+%\titlerunning{{\sf paraVerifier}: An Automatic Framework for Proving Parameterized Cache Coherence Protocols}
+
+%\author{Yongjian Li\inst{1,3} \and Jun Pang\inst{2} \and Yi Lv\inst{1}
+%\and Dongrui Fan\inst{4} \and \\ Shen Cao\inst{1} \and Kaiqiang Duan\inst{1}}
+
+%\authorrunning{Li et al.}
+
+\institute{
+%State Key Laboratory of Computer Science, China \and
+%Computer Science and Communications, University of Luxembourg, Luxembourg \and
+%College of Information Engineering, Capital Normal University, Beijing, China \and
+%Institute of Computing Technology, Chinese Academy of Sciences, China
+%}
+%\frame{\titlepage}
+%%-------------------------------------------------
+
+\begin{frame}\frametitle{Theorem prover(Proof assistant)}
+\noindent
+``A theorem prover is a computer program used interactively for developing human-readable reliable mathematical documents in a formal language."
+\begin{itemize}
+\item computer program (working mechanically)
+\item interacting with people
+\item a formal proof script as an output
+\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Main Ideas}
+\noindent
+``A theorem prover is a computer program used interactively for developing human-readable reliable mathematical documents in a formal language."
+\begin{itemize}
+\item Formal logical calculus
+\item Assistant people's formal logical calculus by a computer
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}\frametitle{Leibniz's opnion on formula logic }
+``Leibniz enunciated the principal properties of what we now call conjunction, disjunction, negation, identity, set inclusion, and the empty set.
+The principles of Leibniz's logic and, arguably, of his whole philosophy, reduce to two:"
+\begin{itemize}
+\item  All our ideas are compounded from a very small number of simple ideas, which form the alphabet of human thought.
+\item Complex ideas proceed from these simple ideas by a uniform and symmetrical combination, analogous to arithmetical multiplication.
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}\frametitle{Theorem proving}
+\vspace{2cm}
+\begin{figure}[!ht]
+% \centering %
+
+\includegraphics[width=1.0\textwidth]{goal.pdf}
+%\vspace{-0.5cm}
+ \caption{Two figures}
+\label{fig:arch}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}\frametitle{Main theorem provers}
+
+\begin{itemize}
+\item Isabelle
+\item Coq
+\item HOL4
+\item PVS
+\item .......
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}\frametitle{Main theorem provers}
+
+\begin{figure}[!ht]
+% \centering %
+
+\includegraphics[width=1.0\textwidth]{thp.png}
+%\vspace{-0.5cm}
+
+\label{fig:arch}
+\end{figure}
+\end{frame}
+
+\begin{frame}\frametitle{Use of theorem prover}
+
+\begin{itemize}
+\item Formalizing mathematics and mathematical libraries
+\begin{itemize}
+\item Mata theories: Set theory, LCF, ZF, ......
+\item Some advanced theories: Kepler guess, Four-coloured problems
+
+\end{itemize}
+\item Formal verification of system (hardware design, program, algorithm, system)
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{The Kepler Conjecture}
+\noindent
+``The Kepler Conjecture says that the ?cannonball packing? (see picture) is a densest packing of 3-dimensional balls of the same size. This was stated as a fact by Kepler in 1611 but only proved by Thomas Hales in 1998. His proof relies on a Java program for generating all (3000) possible counterexamples (all of which are then shown not to be counterexamples). With the help of Isabelle we were able to prove the correctness of a functional implementation of his Java program. Listen to Thomas Hales speaking about the proof (ABC Radio National Science Show, March 11th 2006). A formal proof of the Kepler conjecture was completed in 2014."
+\end{frame}
+
+\begin{frame}\frametitle{Essentials of formal verification (by a theorem prover)}
+
+
+\begin{itemize}
+\item Formally model the system (by a  formula)
+\item Formalize the specification (by a  formula)
+\item Prove that the model satisfies the spec (logical deduction)
+\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Anonymity protocols}
+\begin{figure}[tbp]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{figPdf.pdf}
+\end{center}
+%\caption{An illustration of function $\mathsf{swap}$.} \label{fig:
+%illustration for swap fun}
+\end{figure}
+\end{frame}
+
+\begin{frame}\frametitle{A case study---Formal verification of anonymity protocols (by a theorem prover)}
+
+
+ \begin{specification}
+ %\\
+constdefs box::"agent$\Rightarrow$trace$\Rightarrow$trace set$\Rightarrow$
+~~ assertOfTrace$\Rightarrow$bool" \\
+~ "box A r rs Assert$\equiv$
+ ~~$\forall$r'.r'$\in$rs$\longrightarrow$obsEquiv A  r r' $\longrightarrow$(Assert r')" \\
+
+  \\
+\\
+constdefs diamond::"agent$\Rightarrow$trace$\Rightarrow$trace set$\Rightarrow$
+  ~~ assertOfTrace$\Rightarrow$bool" \\
+~ "diamond A r rs Assert$\equiv$
+  ~~ $\exists$r'.r'$\in$rs
+  $\wedge$obsEquiv A  r r'
+~~ $\wedge$(Assert r')"
+ \end{specification}
+
+
+\end{frame}
+
+
+
+\begin{frame}\frametitle{Formalization of anonymity properties}
+
+\begin{specification}
+constdefs senderAnomity::"agent set$\Rightarrow$agent$\Rightarrow$msg$\Rightarrow$\\
+~~ trace$\Rightarrow$trace set$\Rightarrow$bool" \\
+~ "senderAnomity AS B m r rs$\equiv$ ($\forall$X. X$\in$AS$\longrightarrow$
+~~ r $\models \diamond$B rs (originates X m))"\\
+
+
+
+constdefs unlinkability::"agent set$\Rightarrow$agent$\Rightarrow$msg$\Rightarrow$ \\
+~~ trace$\Rightarrow$trace set$\Rightarrow$bool" \\
+~ "unlinkability AS A m r rs$\equiv$  \\
+~~ (let P= $\lambda$X m' r. sends X m' r  in
+~~ ($\neg$ (r $\models \boxempty$ Spy rs (P A m)) $\wedge$  \\
+  ($\forall$X.X$\in$AS $\longrightarrow$r
+$\models \diamond$Spy rs (P A m)))\\
+
+
+\end{specification}
+
+\end{frame}
+
+
+\begin{frame}\frametitle{Modelling Onion Routing Protocols}
+\begin{specification}
+\\ --- Formal inductive definition
+inductive\_set oneOnionSession::"nat$\Rightarrow$agent\\ $\Rightarrow$trace set"
+for k::"nat" and M::"agent" where \\
+~ ~onionNil: "[]$\in$ (oneOnionSession k M) " \\
+~ | onionCons1: "$[|$tr$\in$(oneOnionSession k M);X$\ne$M;Y$\ne$M;\\
+~~ Nonce n0$\notin$(used tr);Nonce n$\notin$(used tr); length tr$<$k$|]$\\
+$\Longrightarrow$  Says X M (Crypt (pubK M) $ \{$ Nonce n0,Agent Y,Crypt (pubK Y) (Nonce n)$\}$ \\
+ $\#$tr$\in$ oneOnionSession k M"\\
+
+ ~ | onionCons2: "$[|$tr$\in$(oneOnionSession k M);X$\ne$M; \\
+~~ Nonce n$\notin$(used  tr);length tr$<$k$|]$$\Longrightarrow$\\
+~~ Says X M (Crypt (pubK M) (Nonce n))$ \#tr\in$ oneOnionSession k M"\\
+
+~ | onionCons3: "$[|$tr$\in$(oneOnionSession k M);\\
+~~ length tr$\ge$k;  Says M Y (Crypt (pubK Y) (Nonce n))$\notin$(set tr)|]\\
+ $\Longrightarrow$Says M Y (Crypt (pubK Y) (Nonce n))
+$ \#tr\in$ oneOnionSession k M"
+\end{specification}
+\end{frame}
+
+
+
+\begin{frame}\frametitle{Proving}
+\begin{enumerate}
+\item \label{lemma:swapTrMsgCorrespond}
+$[|(m_{1},m_{2})\in \mathsf{set}\ (\mathsf{zip\ (map\ msgPart}\ tr)$ \\
+$\mathsf{(map\ msgPart}\ (\mathsf{swap}\ ma\ mb\ tr)))|]$
+$\Longrightarrow m_{1}=m_{2}\vee (m_{1},m_{2})=(ma,mb)\vee
+(m_{1},m_{2})=(mb,ma)$
+
+\item \label{lemma:swapTrCorrespond2}
+$\mathsf{sendRecvMatchL}\ tr\ (\mathsf{swap}\ ma\ mb\ tr)$
+
+\item \label{lemma:swapTrLength}
+$\mathsf{length\ }(\mathsf{swap\ }ma\ mb\ tr)=\mathsf{length\ }tr$
+
+\item \label{lemma:swapABIsSwapBA}
+$\mathsf{swap}\ ma\ mb\ tr=\mathsf{swap}\ mb\ ma\ tr$
+
+\item \label{lemma:swapTrSwapMaMb}
+$[|(\mathsf{Says}\ X\ M\ ma\in {\sf set}\ tr)|]$\\
+$\Longrightarrow \mathsf{Says}\ X\ M\ mb\in \mathsf{set}\
+(\mathsf{swap}\ ma\ mb\ tr))$
+
+\item \label{lemma:correspondence 1--mb in tr}
+$[|(\mathsf{Says}\ X\ M\ mb\in {\sf set}\ tr)|]$\\
+$\Longrightarrow \mathsf{Says}\ X\ M\ ma\in \mathsf{set}\
+(\mathsf{swap}\ ma\ mb\ tr))$
+
+\item \label{lemma:correspondence 1--not ma and mb in tr}
+$[| m\neq ma;m\neq mb;(\mathsf{Says}\ X\ M\ m)\in \mathsf{set}\ tr|]$\\
+$\Longrightarrow (\mathsf{Says}\ X\ M\ m\in \mathsf{set}\
+(\mathsf{swap}\ ma\ mb\ tr))$
+
+\item \label{lemma:correspondence 2--not ma and mb in tr}
+$[| m\neq ma;m\neq mb;(\mathsf{Says}\ X\ M\ m)\notin \mathsf{set}\ tr|]$\\
+$\Longrightarrow (\mathsf{Says}\ X\ M\ m\notin \mathsf{set}\
+(\mathsf{swap}\ ma\ mb\ tr))$
+
+\item \label{lemma:knowledeEqual}
+$[|\mathsf{Says}\ A\ M\ ma\in tr;
+ \mathsf{Says}\ B\ M\ mb\in tr; A \neq \mathsf{Spy}; B \neq \mathsf{Spy} |]$\\
+$\Longrightarrow \mathsf{knows}\ \mathsf{Spy}\ tr=\mathsf{knows}\
+\mathsf{Spy}\ (\mathsf{swap}\ ma\ mb\ tr)$
+\end{enumerate}
+ \end{frame}
+
+
+\begin{frame}\frametitle{Conclusion}
+
+\begin{lemma}
+$[| tr\in \mathsf{oneOnionSession}\ k\ M; ma'=\{\mathsf{Nonce}\ n\}_{\mathsf{pubK}\ Y};$ \\
+$\mathsf{Says}\ M\ B\ ma'\in \mathsf{set}\ tr;\mathsf{regularOrig}\ ma'\ tr; $ \\
+$M\notin \mathsf{bad};\mathsf {cond}\ tr\ M|]\Longrightarrow$ \\
+$\mathsf{senderAnomity}\ (\mathsf{senders}\ tr\ M-\mathsf{bad})$
+$\mathsf{Spy}\ ma'\ tr\ (\mathsf{oneOnionSession }\ k\ M)$
+\end{lemma}
+%where $\mathsf{senders}\ tr\ M\equiv \{A.\exists m.\mathsf{Says}\ A\
+%M\ m\in \mathsf{set}\ tr\}$, and $\mathsf{cond}\ tr\ M \equiv
+%\forall A\ n_{0}\ n\ Y. \mathsf{Says}\ A\ M\ \{ {\sf
+%Nonce}\ n_{0},{\sf Agent}\ Y,
+%{\{}{\sf Nonce}\ n\}_{{\sf pubK}\ Y}\}$\\
+%$_{{\sf pubK}\ M}\in {\sf set}\ tr \longrightarrow (Y\notin
+%\mathsf{bad}\vee n_{0}\neq n)$
+ \end{frame}
+
+\begin{frame}\frametitle{Conclusion}
+\begin{lemma}
+\label{lemma:unlinkability}
+$[| tr\in \mathsf{oneOnionSession}\ k\ M;$
+$ma'=\{{\sf Nonce}\ n\}_{{\sf pubK}\ Y};$
+$\mathsf{Says}\ M\ B\ ma'\in \mathsf{set}\ tr;
+\mathsf{regularOrig}\ ma'\ tr;$ \\
+$\mathsf{Says}\ A\ M\ m'\in \mathsf{set}\ tr; A\notin \mathsf{bad};
+M\notin \mathsf{bad};$\\
+$\exists X,mx.\mathsf{Says}\ X\ M\ mx\in \mathsf{set}\ tr\wedge
+X\neq A\wedge X\notin {\sf bad};
+\mathsf{cond}\ tr\ M\ n|]$\\
+$\Longrightarrow \mathsf{let}\ AS\mathsf{=senders}\ tr\ M-\mathsf{bad}$ in
+${\sf unlinkability}\ AS\ A\ m\ (\mathsf{oneOnionSession}\ k\ M)$
+\end{lemma}
+
+\end{frame}
+
+\end{document}

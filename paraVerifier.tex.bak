@@ -1,0 +1,97 @@
+\documentclass{beamer}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+\usepackage{isabelle}
+\usepackage{isabellesym}
+
+\usepackage{ctex}
+
+%%%%%%%%%%%% For Isabelle code
+\newlength{\fminilength}
+\newsavebox{\fminibox}
+\newenvironment{fmini}[1][\linewidth]
+  {\setlength{\fminilength}{#1\fboxsep-2\fboxrule}%
+   \vspace{2ex}\noindent\begin{lrbox}{\fminibox}\begin{minipage}{\fminilength}%
+   \mbox{ }\hfill\vspace{-2.5ex}}%
+  {\end{minipage}\end{lrbox}\vspace{1ex}\hspace{0ex}%
+   \framebox{\usebox{\fminibox}}}
+
+\newenvironment{specification}
+{\noindent\scriptsize
+\tt\begin{fmini}\begin{tabbing}X\=X12345\=XXXX\=XXXX\=XXXX\=XXXX\=XXXX
+\=\+\kill} {\end{tabbing}\normalfont\end{fmini}}
+
+\usetheme{Warsaw}
+
+\begin{document}
+
+%%-------------------------------------------------
+
+
+\title{ {\sf paraVerifier}: An Automatic Framework for Parameterized Verification}
+%\titlerunning{{\sf paraVerifier}: An Automatic Framework for Proving Parameterized Cache Coherence Protocols}
+
+%\author{Yongjian Li\inst{1,3} \and Jun Pang\inst{2} \and Yi Lv\inst{1}
+%\and Dongrui Fan\inst{4} \and \\ Shen Cao\inst{1} \and Kaiqiang Duan\inst{1}}
+
+%\authorrunning{Li et al.}
+
+%\institute{
+%State Key Laboratory of Computer Science, China \and
+%Computer Science and Communications, University of Luxembourg, Luxembourg \and
+%College of Information Engineering, Capital Normal University, Beijing, China \and
+%Institute of Computing Technology, Chinese Academy of Sciences, China
+%}
+\frame{\titlepage}
+%%-------------------------------------------------
+
+\begin{frame}\frametitle{Introduction}
+
+\begin{itemize}
+\item  paraVerifier项目总体介绍
+\item  murphi作为协议前端描述语言
+\item  occaml实现invFinder/proofGen
+\item  具体应用：cache coherence protocols, hardware verification, loop-program invariant based verification
+\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Research Field/Education}
+
+\begin{itemize}
+\item Formal methods: modelchecking + theorem proving
+\item Research ability: finding problems + solving problem + publishing your results
+\item program ability:
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}\frametitle{Detail tasks }
+
+\begin{itemize}
+\item  Compiling from Murphi to ocaml(invFinder) representation;
+
+\item German2004/Godson-T case study
+
+\item flow charts searching
+
+\item hardware verification
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}\frametitle{Detail tasks }
+
+\begin{itemize}
+\item experiments
+
+\item homepage introducing paraVerifier
+
+\item Tool manual
+
+\item examples
+\end{itemize}
+\end{frame}
+
+\end{document}

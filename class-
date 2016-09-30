@@ -1,0 +1,16 @@
+1.定义
+
+In computer science and mathematical logic, a proof assistant or interactive theorem prover is a software tool to assist with the development of formal proofs by human-machine collaboration. This involves some sort of interactive proof editor, or other interface, with which a human can guide the search for proofs, 
+the details of which are stored in, and some steps provided by a computer.
+
+
+
+思想:逻辑当成一种演算.
+      符号思维[编辑]
+莱布尼茨有个显著的信仰，大量的人类推理可以被归约为某类运算，而这种运算可以解决看法上的差异：精炼我们的推理的唯一方式是使它们同数学一样切实，这样我们能一眼就找出我们的错误，并且在人们有争议的时候，我们可以简单的说，让我们计算“calculemus”，而无须进一步的忙乱，就能看出谁是正确的。
+——《发现的艺术》1685, W 51
+     定理证明器把这种演算通过定理证明器这种特殊的程序通过计算机来机械执行.
+ 
+
+
+3.用途

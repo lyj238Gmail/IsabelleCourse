@@ -1,0 +1,288 @@
+\documentclass{beamer}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+\usepackage{isabelle}
+\usepackage{isabellesym}
+
+\usepackage{ctex}
+
+%%%%%%%%%%%% For Isabelle code
+\newlength{\fminilength}
+\newsavebox{\fminibox}
+\newenvironment{fmini}[1][\linewidth]
+  {\setlength{\fminilength}{#1\fboxsep-2\fboxrule}%
+   \vspace{2ex}\noindent\begin{lrbox}{\fminibox}\begin{minipage}{\fminilength}%
+   \mbox{ }\hfill\vspace{-2.5ex}}%
+  {\end{minipage}\end{lrbox}\vspace{1ex}\hspace{0ex}%
+   \framebox{\usebox{\fminibox}}}
+
+\newenvironment{specification}
+{\noindent\scriptsize
+\tt\begin{fmini}\begin{tabbing}X\=X12345\=XXXX\=XXXX\=XXXX\=XXXX\=XXXX
+\=\+\kill} {\end{tabbing}\normalfont\end{fmini}}
+
+\usetheme{Warsaw}
+
+\begin{document}
+
+%%-------------------------------------------------
+
+
+\title{ {\sf paraVerifier}: An Automatic Framework for Proving Parameterized Cache Coherence Protocols}
+%\titlerunning{{\sf paraVerifier}: An Automatic Framework for Proving Parameterized Cache Coherence Protocols}
+
+\author{Yongjian Li\inst{1,3} \and Jun Pang\inst{2} \and Yi Lv\inst{1}
+\and Dongrui Fan\inst{4} \and \\ Shen Cao\inst{1} \and Kaiqiang Duan\inst{1}}
+
+%\authorrunning{Li et al.}
+
+\institute{
+State Key Laboratory of Computer Science, China \and
+Computer Science and Communications, University of Luxembourg, Luxembourg \and
+College of Information Engineering, Capital Normal University, Beijing, China \and
+Institute of Computing Technology, Chinese Academy of Sciences, China
+}
+\frame{\titlepage}
+%%-------------------------------------------------
+
+\begin{frame}\frametitle{Problem of Parameterized Verification}
+Consdier a protocol $P$, a property $Inv$
+\begin{itemize}
+\item  $P(N) \models Inv$ for any $N$
+\item not just for a single protocol instance  $P(c)\models Inv$
+\item Our opnion: a theorem proving problem becasue we cann't enumerate all protocol instance $P(N)$
+\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{State of Arts}
+\begin{itemize}
+\item CMP:  parameter abstraction and parameter abstraction
+\item Proposed, by McMillan, elaborated by Chou, Mannava, and Park (CMP) , and formalized
+by Krstic
+\item construction of an abstract instance which can simulate any protocol instance
+\item human provides auxiliary invariants (non-non-interference lemmas)
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}\frametitle{State of Arts }
+\begin{itemize}
+\item  invisible invariants,
+\item  auxiliary invariants are computed from reachable state set in a finite protocol
+instance $P(c)$
+\item raw formula translated from BDD
+\item  the reachable state set cann't be enumerated, e.g., the FLASH protocol
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}\frametitle{Two central and diffcult problems}
+\begin{itemize}
+\item  searching auxilairy invariants is not automatical
+\item  soundness problem: the theoretical foundation is not mechanized, and a gap between existing
+approaches and a formal proof
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Our Motivation}
+
+\begin{itemize}
+\item automatically searching  auxilairy invariants
+\item Formally proving all the things: both the theoretical foundation and case studies
+\item A formal proof script as a formal verification product
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}\frametitle{An Overview of Our Approach}
+
+
+\begin{figure}[!t]
+\centering %
+\vspace{-0.8cm}
+\includegraphics[width=1.0\textwidth]{paraVerifier.pdf}
+\vspace{-0.6cm}
+\caption{The workflow of {\sf paraVerifier}.}
+\label{fig:arch}
+\end{figure}
+\end{frame}
+
+\begin{frame}\frametitle{Some Explanations}
+
+\begin{itemize}
+\item {\sf paraVerifier}={\sf invFinder} + {\sf proofGen}
+
+\item protoocl.fl: a small cache coherence protocol instance
+
+
+\item {\sf invFinder} searches auxiliary invariants automatically
+\item Some advanced theories: Kepler guess, Four-coloured problems
+
+\item   protocol.tbl:  stores the set of ground invariants and a causal relation table
+
+\item {\sf proofGen}: create an Isabelle proof script {\sf protocol.thy} which models and verifies the protocol
+
+\item run Isabelle to automatically proof-check {\sf protocol.thy}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}\frametitle{Theoretical Foundation-Protocol}
+\noindent
+A cache coherence protocol is formalized as a pair $({\it ini}, {\it rules})$, where
+(1) ${\it ini}$ is an initialization formula; and
+(2) ${\it rules}$ is a set of transition rules. Each rule $r\in {\it rules}$ is defined as
+  $g \vartriangleright  S$, where $g$ is a predicate, and $S$ is a
+  parallel assignment to distinct  variables $v_i$ with expressions
+  $e_i$. We write $\mathsf{pre}~r=g$, and $\mathsf{act}~r=S$
+  if $r=g \vartriangleright S$, where $S$ is  a parallel assignment $S=\{x_i:=e_i | i>0\}$.
+\end{frame}
+
+\begin{frame}\frametitle{Theoretical Foundation-Causal Relation}
+
+
+
+\begin{definition}
+We define the following relations
+\begin{enumerate}
+\item $\mathsf{invHoldForRule_1} ~f ~r \equiv \mathsf{pre}~ r \longrightarrow \mathsf{preCond}~ f ~(\mathsf{act}~ r)$, where $\mathsf{preCond}~S~f=f[x_i:=e_i]$, which substitutes each
+occurrence of $x_i$ by $e_i$;
+\item $\mathsf{invHoldForRule_2}~ f~ r \equiv f = \mathsf{preCond}~ f~(\mathsf{act}~ r)$;
+\item $\mathsf{invHoldForRule_3}~ f~ r ~F \equiv$  $\exists f' \in F$ s.t.
+$(f' \wedge (\mathsf{pre}~ r)) \longrightarrow \mathsf{preCond} ~f ~(\mathsf{act}   ~r)$;
+\item $\mathsf{invHoldForRule}~ f~ r ~F$ represents a disjunction of $\mathsf{invHoldForRule_1}$, $\mathsf{invHoldForRule_2}$
+and $\mathsf{invHoldForRule_3}$.
+%\item $\mathsf{invHoldForRule}~ f~ r ~F \equiv (\mathsf{invHoldForRule_1} ~f
+%  ~r) \lor (\mathsf{invHoldForRule_2} ~f ~r) \lor (\mathsf{invHoldForRule_3}~ f~ r~F)$.
+\end{enumerate}
+\end{definition}
+\end{frame}
+
+\begin{frame}\frametitle{Theoretical Foundation - Consistency Relation)}
+
+
+\begin{definition}
+A consistency relation, i.e., $\mathsf{consistent}~ {\it invs} ~{\it ini}~ {\it rules}$,
+that holds between a protocol $({\it ini}, {\it rules})$ and
+a set of invariants ${\it invs}=\{inv_1,\ldots, inv_n\}$,  is defined as:
+%
+\begin{itemize}
+\item For any invariant ${\it inv} \in {\it invs}$ and state $s$,
+if ${\it ini}$ is
+evaluated as true at state $s$
+(i.e., $\mathsf{formEval}~{\it ini}~s={\it true}$), then ${\it inv}$ is also evaluated as true at the state $s$.
+
+\item For any ${\it inv} \in {\it invs}$ and $r\in {\it rules}$,
+$\mathsf{invHoldForRule}~{\it inv}~r~{\it invs}$.
+\end{itemize}
+\end{definition}
+
+
+\end{frame}
+
+
+
+
+\begin{frame}\frametitle{Theoretical Foundation - Consistent Lemma}
+
+\begin{lemma}\label{consistentLemma}%[(Consistency lemma)]
+For a protocol $( ini,  rules)$,
+we use $\mathsf{reachableSet}~   ini~ rules$
+to denote the set of reachable states of the protocol.
+Given a set of invariants $ invs$,
+we have
+$[| \mathsf{consistent}~  invs ~ ini~  rules;
+  s \in \mathsf{reachableSet}~  ini~rules|]\Longrightarrow
+  \forall  inv \in invs. \mathsf{formEval}~ inv ~s$  
+\end{lemma}
+\end{frame}
+
+
+
+\begin{frame}\frametitle{Key Algorithm of {\sf invFinder}}
+\begin{enumerate}
+\item \label{lemma:swapTrMsgCorrespond}
+$[|(m_{1},m_{2})\in \mathsf{set}\ (\mathsf{zip\ (map\ msgPart}\ tr)$ \\
+$\mathsf{(map\ msgPart}\ (\mathsf{swap}\ ma\ mb\ tr)))|]$
+$\Longrightarrow m_{1}=m_{2}\vee (m_{1},m_{2})=(ma,mb)\vee
+(m_{1},m_{2})=(mb,ma)$
+
+\item \label{lemma:swapTrCorrespond2}
+$\mathsf{sendRecvMatchL}\ tr\ (\mathsf{swap}\ ma\ mb\ tr)$
+
+\item \label{lemma:swapTrLength}
+$\mathsf{length\ }(\mathsf{swap\ }ma\ mb\ tr)=\mathsf{length\ }tr$
+
+\item \label{lemma:swapABIsSwapBA}
+$\mathsf{swap}\ ma\ mb\ tr=\mathsf{swap}\ mb\ ma\ tr$
+
+\item \label{lemma:swapTrSwapMaMb}
+$[|(\mathsf{Says}\ X\ M\ ma\in {\sf set}\ tr)|]$\\
+$\Longrightarrow \mathsf{Says}\ X\ M\ mb\in \mathsf{set}\
+(\mathsf{swap}\ ma\ mb\ tr))$
+
+\item \label{lemma:correspondence 1--mb in tr}
+$[|(\mathsf{Says}\ X\ M\ mb\in {\sf set}\ tr)|]$\\
+$\Longrightarrow \mathsf{Says}\ X\ M\ ma\in \mathsf{set}\
+(\mathsf{swap}\ ma\ mb\ tr))$
+
+\item \label{lemma:correspondence 1--not ma and mb in tr}
+$[| m\neq ma;m\neq mb;(\mathsf{Says}\ X\ M\ m)\in \mathsf{set}\ tr|]$\\
+$\Longrightarrow (\mathsf{Says}\ X\ M\ m\in \mathsf{set}\
+(\mathsf{swap}\ ma\ mb\ tr))$
+
+\item \label{lemma:correspondence 2--not ma and mb in tr}
+$[| m\neq ma;m\neq mb;(\mathsf{Says}\ X\ M\ m)\notin \mathsf{set}\ tr|]$\\
+$\Longrightarrow (\mathsf{Says}\ X\ M\ m\notin \mathsf{set}\
+(\mathsf{swap}\ ma\ mb\ tr))$
+
+\item \label{lemma:knowledeEqual}
+$[|\mathsf{Says}\ A\ M\ ma\in tr;
+ \mathsf{Says}\ B\ M\ mb\in tr; A \neq \mathsf{Spy}; B \neq \mathsf{Spy} |]$\\
+$\Longrightarrow \mathsf{knows}\ \mathsf{Spy}\ tr=\mathsf{knows}\
+\mathsf{Spy}\ (\mathsf{swap}\ ma\ mb\ tr)$
+\end{enumerate}
+ \end{frame}
+
+
+\begin{frame}\frametitle{Conclusion}
+
+\begin{lemma}
+$[| tr\in \mathsf{oneOnionSession}\ k\ M; ma'=\{\mathsf{Nonce}\ n\}_{\mathsf{pubK}\ Y};$ \\
+$\mathsf{Says}\ M\ B\ ma'\in \mathsf{set}\ tr;\mathsf{regularOrig}\ ma'\ tr; $ \\
+$M\notin \mathsf{bad};\mathsf {cond}\ tr\ M|]\Longrightarrow$ \\
+$\mathsf{senderAnomity}\ (\mathsf{senders}\ tr\ M-\mathsf{bad})$
+$\mathsf{Spy}\ ma'\ tr\ (\mathsf{oneOnionSession }\ k\ M)$
+\end{lemma}
+%where $\mathsf{senders}\ tr\ M\equiv \{A.\exists m.\mathsf{Says}\ A\
+%M\ m\in \mathsf{set}\ tr\}$, and $\mathsf{cond}\ tr\ M \equiv
+%\forall A\ n_{0}\ n\ Y. \mathsf{Says}\ A\ M\ \{ {\sf
+%Nonce}\ n_{0},{\sf Agent}\ Y,
+%{\{}{\sf Nonce}\ n\}_{{\sf pubK}\ Y}\}$\\
+%$_{{\sf pubK}\ M}\in {\sf set}\ tr \longrightarrow (Y\notin
+%\mathsf{bad}\vee n_{0}\neq n)$
+ \end{frame}
+
+\begin{frame}\frametitle{Conclusion}
+\begin{lemma}
+\label{lemma:unlinkability}
+$[| tr\in \mathsf{oneOnionSession}\ k\ M;$
+$ma'=\{{\sf Nonce}\ n\}_{{\sf pubK}\ Y};$
+$\mathsf{Says}\ M\ B\ ma'\in \mathsf{set}\ tr;
+\mathsf{regularOrig}\ ma'\ tr;$ \\
+$\mathsf{Says}\ A\ M\ m'\in \mathsf{set}\ tr; A\notin \mathsf{bad};
+M\notin \mathsf{bad};$\\
+$\exists X,mx.\mathsf{Says}\ X\ M\ mx\in \mathsf{set}\ tr\wedge
+X\neq A\wedge X\notin {\sf bad};
+\mathsf{cond}\ tr\ M\ n|]$\\
+$\Longrightarrow \mathsf{let}\ AS\mathsf{=senders}\ tr\ M-\mathsf{bad}$ in
+${\sf unlinkability}\ AS\ A\ m\ (\mathsf{oneOnionSession}\ k\ M)$
+\end{lemma}
+
+\end{frame}
+
+\end{document}
