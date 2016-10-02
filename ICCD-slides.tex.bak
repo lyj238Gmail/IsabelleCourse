@@ -71,29 +71,30 @@ Computer Science and Communications, University of Luxembourg, Luxembourg
 Consdier a protocol $P$, a property $Inv$
 \begin{itemize}
 \item  $P(N) \models Inv$ for any $N$
-\item not just for a single protocol instance  $P(c)\models Inv$
-\item Our opinion: parameterized verification is a theorem proving problem
+\item Not just for a single protocol instance  $P(c)\models Inv$, where $c$ is a fixed number
+\item Model-checking can only check $P(c)\models Inv$
+\item Our opinion: A theorem proving problem is a complete solution to parameterized verification
 \end{itemize}
 \end{frame}
 
 \begin{frame}\frametitle{State of Arts--CMP method}
 \begin{itemize}
-\item CMP :  parameter abstraction and parameter abstraction
+\item CMP :  parameter abstraction and guard strengthening
 \item Proposed, by McMillan, elaborated by Chou, Mannava, and Park (CMP) , and formalized
 by Krstic
 \item construction of an abstract instance which can simulate any protocol instance
-\item human provides auxiliary invariants (non-interference lemmas)
+\item \emph{Not automatic}: human provides auxiliary invariants (non-interference lemmas)
 \end{itemize}
 \end{frame}
 
 
 \begin{frame}\frametitle{State of Arts--Invisible invariants }
 \begin{itemize}
-\item  Proposed by 
+\item  Proposed by Amir Pnueli, Sitvanit Ruah, and Lenore Zuck
 \item  auxiliary invariants are computed from reachable state set in a finite protocol
 instance $P(c)$
-\item raw formula translated from BDD
-\item  the reachable state set can't be enumerated, e.g., the FLASH protocol
+\item ``Invisible invariants" are raw formulas translated from BDD
+\item \emph{ Problem:} the required reachable state set can't be enumerated for complex protocol, e.g., the FLASH protocol
 \end{itemize}
 \end{frame}
 
@@ -102,7 +103,8 @@ instance $P(c)$
 \begin{frame}\frametitle{Two central and difficult problems}
 \begin{itemize}
 \item  searching auxiliary invariants is not automatic
-\item  soundness problem: the theoretical foundation is not mechanized, and there is no  a formal proof
+\pause
+\item  soundness problem: Neither is the theoretical foundation   mechanized, nor  is there  a formal proof for all the things
 \end{itemize}
 
 \end{frame}
@@ -111,7 +113,9 @@ instance $P(c)$
 
 \begin{itemize}
 \item automatically searching  auxiliary invariants
+\pause
 \item Formally proving all the things: both the theoretical foundation and case studies
+
 \item A formal proof script as a formal verification product
 \end{itemize}
 \end{frame}
@@ -137,16 +141,16 @@ instance $P(c)$
 \begin{itemize}
 \item {\sf paraVerifier}={\sf invFinder} + {\sf proofGen}
 
-\item protoocl.fl: a small reference instance of the   protocol
+\item protoocl.m: a small reference instance of the   protocol in Murphi
 
 
 \item {\sf invFinder} searches auxiliary invariants automatically
 
-\item   protocol.tbl:  stores the set of ground invariants and a causal relation table
+\item   protocol.tbl:  stores the set of ground invariants and a causal relation table in a concrete form
 
-\item {\sf proofGen}: create an Isabelle proof script {\sf protocol.thy} which models and verifies the protocol
+\item {\sf proofGen}: creates an Isabelle proof script {\sf protocol.thy} which models   the protocol
 
-\item run Isabelle script to automatically proof-check {\sf protocol.thy}
+\item runs Isabelle script to automatically proof-check {\sf protocol.thy}
 \end{itemize}
 
 \end{frame}
@@ -157,11 +161,11 @@ instance $P(c)$
 \noindent
 A  protocol is formalized as a pair $({\it ini}, {\it rules})$, where
 \begin{itemize}
-\item ${\it ini}$ is an initialization formula; and
+\item ${\it ini}$ is a formula to specify initial states 
 \item  ${\it rules}$ is a set of transition rules. Each rule $r\in {\it rules}$ is defined as
-  $g \vartriangleright  S$, where $g$ is a predicate, and $S$ is a
+  $g \vartriangleright  S$, \forget{where $g$ is a predicate, and $S$ is a
   parallel assignment to distinct  variables $v_i$ with expressions
-  $e_i$, where $S$ is  a parallel assignment $S=\{x_i:=e_i | i>0\}$.
+  $e_i$,} where $S$ is  a parallel assignment $S=\{x_i:=e_i | i>0\}$.
 \end{itemize}
 We write $\mathsf{pre}~r=g$, and $\mathsf{act}~r=S$
   if $r=g \vartriangleright S$.
@@ -192,21 +196,21 @@ and $\mathsf{invHoldForRule_3}$.
 \begin{frame}\frametitle{Theoretical Foundation - Consistency Relation)}
 
 
-\begin{definition}
+%\begin{definition}
 A consistency relation, i.e., $\mathsf{consistent}~ {\it invs} ~{\it ini}~ {\it rules}$,
 that holds between a protocol $({\it ini}, {\it rules})$ and
 a set of invariants ${\it invs}=\{inv_1,\ldots, inv_n\}$,  is defined as:
 %
 \begin{itemize}
-\item For any invariant ${\it inv} \in {\it invs}$ and state $s$,
-if ${\it ini}$ is
-evaluated as true at state $s$
-(i.e., $\mathsf{formEval}~{\it ini}~s={\it true}$), then ${\it inv}$ is also evaluated as true at the state $s$.
+\item For any invariant ${\it inv} \in {\it invs}$ and state $s$, $ini$ implies $inv$
+%if ${\it ini}$ is
+%evaluated as true at state $s$
+%(i.e., $\mathsf{formEval}~{\it ini}~s={\it true}$), then ${\it inv}$ is also evaluated as true at the state $s$.
 
 \item For any ${\it inv} \in {\it invs}$,  and $r\in {\it rules}$, and any state $s$,
-$\mathsf{invHoldForRule}~{\it inv}~r~{\it invs}$.
+$\mathsf{invHoldForRule}~s~{\it inv}~r~{\it invs}$.
 \end{itemize}
-\end{definition}
+%\end{definition}
 
 
 \end{frame}
@@ -216,16 +220,24 @@ $\mathsf{invHoldForRule}~{\it inv}~r~{\it invs}$.
 
 \begin{frame}\frametitle{Theoretical Foundation - Consistent Lemma}
 
-\begin{lemma}\label{consistentLemma}%[(Consistency lemma)]
-For a protocol $( ini,  rules)$,
-we use $\mathsf{reachableSet}~   ini~ rules$
-to denote the set of reachable states of the protocol.
-Given a set of invariants $ invs$,
-we have
+%\begin{lemma}\label{consistentLemma}%[(Consistency lemma)]
+%For a protocol $( ini,  rules)$,
+%we use $\mathsf{reachableSet}~   ini~ rules$
+%to denote the set of reachable states of the protocol.
+%Given a set of invariants $ invs$,
+%we have
 $[| \mathsf{consistent}~  invs ~ ini~  rules;
   s \in \mathsf{reachableSet}~  ini~rules|]\Longrightarrow
-  \forall  inv \in invs. \mathsf{formEval}~ inv ~s$
-\end{lemma}
+  \forall  inv \in invs. s \models inv$
+%\end{lemma}
+
+\begin{itemize}
+\item $\mathsf{reachableSet}~   ini~ rules$
+is the set of reachable states of the protocol.
+
+\item $s \models inv$ means $inv$ holds at the state $s$
+
+\end{itemize}
 \end{frame}
 
 
@@ -338,7 +350,9 @@ formula is an invariant in the small reference model
 
 \item After fetching an unchecked formula $f$ from $newInvs$, for any rule $r$, $\mathsf{Policy}(r,f)$  generates groups of parameters $paras$  according to $r$ and $f$.
 
-\item     For each parameter $para$ in $paras$,   it is applied to instantiate $r$ into a concrete rule $cr$,  $coreFinder(cr,  f, A)$ is called to check
+\item     For each parameter $para$ in $paras$,   it is applied to instantiate $r$ into a concrete rule $cr$ 
+\pause 
+\item  $coreFinder(cr,  f, A)$ is called to check
  whether  a causal relation exists between $cr$ and $f$.
 \end{itemize}
  \end{frame}
@@ -404,7 +418,7 @@ Consider a a parameterized rule $r$ with $nR$-parameters, and a concrete invaria
 %}
 
 \end{algorithm}
-$\mathsf{Policy}(r,f)$ is simply calling  $cmpSemiperm((nR+nI,nR)$
+$\mathsf{Policy}(r,f)$ is simply calling  $cmpSemiperm(nR+nI,nR)$
 \end{frame}
 
  \begin{frame}\frametitle{Core Searching Algorithm: $coreFinder$}
@@ -593,7 +607,7 @@ $\mathsf{symbCaseI}(LR,LI,i)\equiv $\\
 
 \item Murphi model and computed  invariants $\longrightarrow$  Isabelle model
 \end{itemize}
-
+\pause
 \item Proving that properties hold in the formal model
 \begin{itemize}
 \item Instead of working interactively,\JP{\emph{ we construct our proof automatically}}
@@ -709,13 +723,13 @@ Among them, the former three ones are small, German is medium, FLASH is industri
 \begin{frame}\frametitle{Conclusions}
 
 \begin{itemize}
-\item   {\sf invFinder}   \emph{generates automatically }  invariants 
+\item   {\sf invFinder}   \emph{generates automatically }  invariants
 
 \item   {\sf proofGen}     \emph{generates automatically } proofs to prove invariants
- 
- \item Our verification output: a formally readable proof. 
- 
+
+ \item Our verification output: a formally readable proof.
+
  \item  Our verification goal:  verifying the protocol in both an automatic and rigorous way
-\end{itemize}    
+\end{itemize}
 \end{frame}
 \end{document}

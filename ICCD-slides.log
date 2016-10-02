@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2016.2.4)  30 SEP 2016 15:59
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2013.12.9)  1 OCT 2016 18:01
 entering extended mode
 **ICCD-slides.tex
-(D:\work\IsabelleCourse\ICCD-slides.tex
+(C:\Users\lyj\Documents\git\IsabelleCourse\ICCD-slides.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for loaded.
 (C:\CTEX\MiKTeX\tex\latex\beamer\base\beamer.cls
@@ -138,7 +138,7 @@ Package: ltxcmds 2011/04/18 v1.20 LaTeX kernel commands for general use (HO)
 \Gin@req@width=\dimen128
 )
 (C:\CTEX\MiKTeX\tex\latex\pgf\systemlayer\pgfsys.sty
-(D:\work\IsabelleCourse\pgfrcs.sty
+(C:\Users\lyj\Documents\git\IsabelleCourse\pgfrcs.sty
 (C:\CTEX\MiKTeX\tex\generic\pgf\utilities\pgfutil-common.tex
 \pgfutil@everybye=\toks16
 )
@@ -652,7 +652,7 @@ Package: stmaryrd 1994/03/03 St Mary's Road symbol package
 LaTeX Font Info:    Overwriting symbol font `stmry' in version `bold'
 (Font)                  U/stmry/m/n --> U/stmry/b/n on input line 89.
 )
-(D:\work\IsabelleCourse\isabelle.sty
+(C:\Users\lyj\Documents\git\IsabelleCourse\isabelle.sty
 \isa@parindent=\dimen182
 \isa@parskip=\dimen183
 
@@ -664,7 +664,7 @@ Including comment 'isadelimproof' Including comment 'isatagproof'
 Including comment 'isadelimML' Including comment 'isatagML'
 Including comment 'isadelimvisible' Including comment 'isatagvisible'
 Excluding comment 'isadeliminvisible' Excluding comment 'isataginvisible')
-(D:\work\IsabelleCourse\isabellesym.sty)
+(C:\Users\lyj\Documents\git\IsabelleCourse\isabellesym.sty)
 (C:\CTEX\MiKTeX\tex\latex\algorithm2e\algorithm2e.sty
 Package: algorithm2e 2008/00/00 v3.10 algorithms environments
 \c@AlgoLine=\count153
@@ -786,7 +786,7 @@ Package: beamercolorthemeorchid 2010/06/17  (rcs-revision d02a7cf4d8ae)
 (C:\CTEX\MiKTeX\tex\latex\beamer\base\themes\color\beamercolorthemewhale.sty
 Package: beamercolorthemewhale 2010/06/17  (rcs-revision d02a7cf4d8ae)
 ))
-(D:\work\IsabelleCourse\ICCD-slides.aux)
+(C:\Users\lyj\Documents\git\IsabelleCourse\ICCD-slides.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 51.
 LaTeX Font Info:    ... okay on input line 51.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 51.
@@ -865,8 +865,8 @@ LaTeX Info: Redefining \ref on input line 51.
 LaTeX Info: Redefining \pageref on input line 51.
 LaTeX Info: Redefining \nameref on input line 51.
 
-(D:\work\IsabelleCourse\ICCD-slides.out)
-(D:\work\IsabelleCourse\ICCD-slides.out)
+(C:\Users\lyj\Documents\git\IsabelleCourse\ICCD-slides.out)
+(C:\Users\lyj\Documents\git\IsabelleCourse\ICCD-slides.out)
 \@outlinefile=\write6
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 51.
@@ -937,7 +937,7 @@ Dictionary: translator-theorem-dictionary, Language: English
 )
 LaTeX Info: Redefining \includegraphics on input line 51.
 
-(D:\work\IsabelleCourse\ICCD-slides.nav)
+(C:\Users\lyj\Documents\git\IsabelleCourse\ICCD-slides.nav)
 
 Package hyperref Warning: Option `pdfauthor' has already been used,
 (hyperref)                setting the option has no effect on input line 59.
@@ -1000,34 +1000,34 @@ Overfull \hbox (47.69133pt too wide) has occurred while \output is active
 
 [6
 
-] <paraVerifierWorkFlow.pdf, id=187, 801.99625pt x 102.3825pt>
-File: paraVerifierWorkFlow.pdf Graphic file (type pdf)
-
-<use paraVerifierWorkFlow.pdf>
-Package pdftex.def Info: paraVerifierWorkFlow.pdf used on input line 131.
-(pdftex.def)             Requested size: 307.28987pt x 39.22913pt.
-
+]
 Overfull \hbox (47.69133pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [7
 
- <D:/work/IsabelleCourse/paraVerifierWorkFlow.pdf>]
+]
 Overfull \hbox (47.69133pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [8
 
-]
+] <paraVerifierWorkFlow.pdf, id=241, 801.99625pt x 102.3825pt>
+File: paraVerifierWorkFlow.pdf Graphic file (type pdf)
+
+<use paraVerifierWorkFlow.pdf>
+Package pdftex.def Info: paraVerifierWorkFlow.pdf used on input line 135.
+(pdftex.def)             Requested size: 307.28987pt x 39.22913pt.
+
 Overfull \hbox (47.69133pt too wide) has occurred while \output is active
  [][][][]  
  []
 
 [9
 
-]
+ <C:/Users/lyj/Documents/git/IsabelleCourse/paraVerifierWorkFlow.pdf>]
 Overfull \hbox (47.69133pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1084,10 +1084,6 @@ Overfull \hbox (47.69133pt too wide) has occurred while \output is active
 [17
 
 ]
-Overfull \vbox (4.00212pt too high) detected at line 452
- []
-
-
 Overfull \hbox (47.69133pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1109,6 +1105,10 @@ Overfull \hbox (47.69133pt too wide) has occurred while \output is active
 [20
 
 ]
+Overfull \vbox (4.00212pt too high) detected at line 466
+ []
+
+
 Overfull \hbox (47.69133pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1116,10 +1116,6 @@ Overfull \hbox (47.69133pt too wide) has occurred while \output is active
 [21
 
 ]
-Overfull \vbox (59.42291pt too high) detected at line 550
- []
-
-
 Overfull \hbox (47.69133pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1127,11 +1123,6 @@ Overfull \hbox (47.69133pt too wide) has occurred while \output is active
 [22
 
 ]
-Overfull \hbox (6.08601pt too wide) in paragraph at lines 584--584
- [] 
- []
-
-
 Overfull \hbox (47.69133pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1146,6 +1137,10 @@ Overfull \hbox (47.69133pt too wide) has occurred while \output is active
 [24
 
 ]
+Overfull \vbox (59.42291pt too high) detected at line 564
+ []
+
+
 Overfull \hbox (47.69133pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1153,14 +1148,9 @@ Overfull \hbox (47.69133pt too wide) has occurred while \output is active
 [25
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 673
-.
-LaTeX Font Info:    No file OMScmtt.fd. on input line 673.
-
-
-LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
-(Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbraceleft' on input line 673.
+Overfull \hbox (6.08601pt too wide) in paragraph at lines 598--598
+ [] 
+ []
 
 
 Overfull \hbox (47.69133pt too wide) has occurred while \output is active
@@ -1170,11 +1160,6 @@ Overfull \hbox (47.69133pt too wide) has occurred while \output is active
 [26
 
 ]
-Overfull \hbox (20.00021pt too wide) in paragraph at lines 707--707
- [] 
- []
-
-
 Overfull \hbox (47.69133pt too wide) has occurred while \output is active
  [][][][]  
  []
@@ -1189,14 +1174,57 @@ Overfull \hbox (47.69133pt too wide) has occurred while \output is active
 [28
 
 ]
+Overfull \hbox (47.69133pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[29
+
+]
+LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 687
+.
+LaTeX Font Info:    No file OMScmtt.fd. on input line 687.
+
+
+LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbraceleft' on input line 687.
+
+
+Overfull \hbox (47.69133pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[30
+
+]
+Overfull \hbox (20.00021pt too wide) in paragraph at lines 721--721
+ [] 
+ []
+
+
+Overfull \hbox (47.69133pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[31
+
+]
+Overfull \hbox (47.69133pt too wide) has occurred while \output is active
+ [][][][]  
+ []
+
+[32
+
+]
 \tf@nav=\write7
 \tf@toc=\write8
 \tf@snm=\write9
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 721.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 721.
- (D:\work\IsabelleCourse\ICCD-slides.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 721.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 721.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 735.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 735.
+ (C:\Users\lyj\Documents\git\IsabelleCourse\ICCD-slides.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 735.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 735.
 Package rerunfilecheck Info: File `ICCD-slides.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
@@ -1207,31 +1235,37 @@ LaTeX Font Warning: Size substitutions with differences
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 17545 strings out of 495354
- 313813 string characters out of 3183860
- 411794 words of memory out of 3000000
+ 17554 strings out of 495354
+ 314256 string characters out of 3183859
+ 411770 words of memory out of 3000000
  20237 multiletter control sequences out of 15000+200000
  18838 words of font info for 74 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 49i,22n,59p,535b,549s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/CTEX/MiKTeX/fon
-ts/type1/public/amsfonts/cm/cmmi10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfo
-nts/cm/cmmi12.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:
-/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:/CTEX/MiKTeX/fonts/ty
-pe1/public/amsfonts/cm/cmss8.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmssbx10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi10.pfb><C:/CT
-EX/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi12.pfb><C:/CTEX/MiKTeX/fonts/type
-1/public/amsfonts/cm/cmssi8.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmsy10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/CTEX/Mi
-KTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/CTEX/MiKTeX/fonts/type1/publi
-c/amsfonts/cm/cmsy8.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.p
-fb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/CTEX/MiKTeX/fon
-ts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on ICCD-slides.pdf (28 pages, 432701 bytes).
+ 49i,22n,59p,535b,553s stack positions out of 5000i,500n,10000p,200000b,50000s
+pdfTeX warning (dest): name{Navigation33} has been referenced but does not ex
+ist, replaced by a fixed one
+
+<C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/CTEX/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmmi10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfont
+s/cm/cmmi12.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/C
+TEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:/CTEX/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmss8.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/c
+mssbx10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi10.pfb><C:/CTEX
+/MiKTeX/fonts/type1/public/amsfonts/cm/cmssi12.pfb><C:/CTEX/MiKTeX/fonts/type1/
+public/amsfonts/cm/cmssi8.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cm
+sy10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/CTEX/MiKT
+eX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/CTEX/MiKTeX/fonts/type1/public/
+amsfonts/cm/cmsy8.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb
+><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/CTEX/MiKTeX/fonts
+/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on ICCD-slides.pdf (32 pages, 457465 bytes).
 PDF statistics:
- 892 PDF objects out of 1000 (max. 8388607)
- 60 named destinations out of 1000 (max. 500000)
+ 1000 PDF objects out of 1000 (max. 8388607)
+ 69 named destinations out of 1000 (max. 500000)
  80 words of extra memory for PDF output out of 10000 (max. 10000000)
 
